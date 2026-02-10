@@ -4,13 +4,15 @@ export interface Tool {
   description: string;
   category: "Image" | "Video" | "Code" | "Writing" | "Audio" | "Productivity" | "Chat" | "3D";
   url: string;
-  pricing: "Free" | "Paid";
+  pricing: "Free" | "Paid" | "Freemium";
   featured: boolean;
-  badge?: string | null;
+  badge?: string;       // A tag amarela (ex: #1 Overall)
+  subBadge?: string;    // A tag cinza (ex: Classic)
   color: string;
-  iconName: string;
   keywords: string[];
-  rating: number;
+  isTrending?: boolean;
+  isOpenSource?: boolean;
+  isClassic?: boolean;
 }
 
 export interface QuickAction {
