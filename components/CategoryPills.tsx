@@ -9,12 +9,13 @@ import {
   Mic,
   Briefcase,
   MessageSquare,
+  Box,
 } from "lucide-react";
 
 interface CategoryPillsProps {
   categories: string[];
-  selectedCategory: string | null;
-  onSelectCategory: (category: string | null) => void;
+  selected: string;
+  onSelect: (category: string) => void;
 }
 
 const categoryConfig: Record<
@@ -28,21 +29,14 @@ const categoryConfig: Record<
   Audio: { icon: Mic, label: "Audio" },
   Productivity: { icon: Briefcase, label: "Productivity" },
   Chat: { icon: MessageSquare, label: "Chat" },
+  "3D": { icon: Box, label: "3D" },
 };
 
 export default function CategoryPills({
   categories,
-  selectedCategory,
-  onSelectCategory,
+  selected,
+  onSelect,
 }: CategoryPillsProps) {
-  const handleClick = (category: string) => {
-    if (selectedCategory === category) {
-      onSelectCategory(null);
-    } else {
-      onSelectCategory(category);
-    }
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -50,24 +44,10 @@ export default function CategoryPills({
       transition={{ duration: 0.5, delay: 0.2 }}
       className="flex flex-wrap items-center justify-center gap-3"
     >
-      {/* All Tools Button */}
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => onSelectCategory(null)}
-        className={`h-10 px-5 rounded-full font-bold text-sm transition-all duration-300 ${
-          selectedCategory === null
-            ? "bg-white text-gray-950 shadow-lg shadow-white/20"
-            : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-gray-300 border border-white/10"
-        }`}
-      >
-        All Tools
-      </motion.button>
-
-      {/* Category Pills */}
       {categories.map((category, index) => {
         const config = categoryConfig[category];
         const IconComponent = config?.icon;
+        const isAllTools = category === "All Tools";
 
         return (
           <motion.button
@@ -76,16 +56,16 @@ export default function CategoryPills({
             whileTap={{ scale: 0.95 }}
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.05 * (index + 1) }}
-            onClick={() => handleClick(category)}
+            transition={{ delay: 0.05 * index }}
+            onClick={() => onSelect(category)}
             className={`h-10 flex items-center gap-2 px-4 rounded-full font-semibold text-sm transition-all duration-300 ${
-              selectedCategory === category
+              selected === category
                 ? "bg-white text-gray-950 shadow-lg shadow-white/20"
                 : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-gray-300 border border-white/10"
             }`}
           >
-            {IconComponent && <IconComponent className="w-4 h-4" />}
-            {config?.label || category}
+            {!isAllTools && IconComponent && <IconComponent className="w-4 h-4" />}
+            {category}
           </motion.button>
         );
       })}
