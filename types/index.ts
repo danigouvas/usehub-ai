@@ -6,7 +6,7 @@ export interface Tool {
   url: string;
   pricing: "Free" | "Paid" | "Freemium" | "Open Source";
   featured: boolean;
-  badge: string | null;
+  badge?: string | null; // Optional badge
   color: string; // Tailwind class (e.g., "bg-blue-500")
   iconName: string; // Lucide icon name
   keywords: string[]; // Search keywords for intelligent matching
