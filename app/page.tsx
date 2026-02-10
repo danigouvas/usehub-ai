@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useMemo } from 'react';
-import { Search, Globe, Filter, Star, Info, MessageSquare, Zap, Code, Image, Video, Audio, BookOpen, Layers, MousePointer2 } from 'lucide-react';
+import { Search, Globe, Filter, Star, Info, MessageSquare, Zap, Code, Image, Video, Music, BookOpen, Layers, MousePointer2 } from 'lucide-react';
 import { tools } from '../data/tools';
 import ToolCard from '../components/ToolCard';
 import SearchBar from '../components/SearchBar';
