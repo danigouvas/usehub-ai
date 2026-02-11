@@ -22,7 +22,7 @@ export default function Home() {
 
   const handleCategoryChange = (cat: string) => {
     setSelectedCategory(cat);
-    setSearchQuery(''); // Limpa as bubbles quando muda de categoria
+    setSearchQuery(''); // Clear search when changing category
     setFilterType('All');
   };
 
@@ -49,11 +49,11 @@ export default function Home() {
 
   const featured = tools.filter(t => t.featured);
 
-  // Power Rankings baseados no LMARENA (Top 3 por Categoria)
+  // Power Rankings based on scores (Top 3 per Category)
   const rankingData = useMemo(() => {
     return categories.filter(c => c !== "All Tools").map(cat => ({
       category: cat,
-      top: tools.filter(t => t.category === cat).sort((a,b) => b.rating - a.rating).slice(0, 3)
+      top: tools.filter(t => t.category === cat).sort((a,b) => (b.score || 0) - (a.score || 0)).slice(0, 3)
     }));
   }, []);
 
@@ -73,7 +73,7 @@ export default function Home() {
           <SearchBar value={searchQuery} onChange={setSearchQuery} />
         </div>
 
-        {/* Quick Actions (Bolas Noob no Topo) */}
+        {/* Quick Actions (Bubble Pills) */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {quickActions.map(action => (
             <button key={action.label} onClick={() => handleQuickAction(action.search)} className="px-5 py-2.5 rounded-xl bg-slate-900/80 border border-slate-800 text-sm font-bold hover:border-indigo-500 transition-all flex items-center gap-2 hover:bg-indigo-500/5">
@@ -82,7 +82,7 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Menu de Filtros Inteligentes */}
+        {/* Smart Filter Menu */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 mt-16">
           <CategoryPills categories={categories} selected={selectedCategory} onSelect={handleCategoryChange} />
           <div className="flex bg-slate-900/80 p-1 rounded-xl border border-slate-800">
@@ -95,12 +95,12 @@ export default function Home() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 py-20">
-        {/* Elite Section (2026 Elite) */}
+        {/* Honor Roll Section (Featured Elite) */}
         {searchQuery === '' && selectedCategory === 'All Tools' && filterType === 'All' && (
           <section className="mb-24">
             <div className="flex items-center gap-3 mb-10">
               <Trophy className="w-6 h-6 text-amber-500" />
-              <h2 className="text-2xl font-black uppercase tracking-[0.3em] text-amber-500">2026 Elite Choice</h2>
+              <h2 className="text-2xl font-black uppercase tracking-[0.3em] text-amber-500">2026 Honor Roll</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {featured.map(tool => <ToolCard key={`featured-${tool.id}`} tool={tool} />)}
@@ -144,7 +144,7 @@ export default function Home() {
                       <td key={t.id} className="px-8 py-8">
                         <div className="flex flex-col">
                           <span className={`text-sm font-black ${idx === 0 ? 'text-white' : 'text-slate-300'}`}>{t.name}</span>
-                          <span className="text-[9px] font-bold text-slate-500 uppercase tracking-tighter">Score: {t.rating}</span>
+                          <span className="text-[9px] font-bold text-slate-500 uppercase tracking-tighter">Score: {t.score}</span>
                         </div>
                       </td>
                     ))}
