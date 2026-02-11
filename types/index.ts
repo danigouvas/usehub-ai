@@ -2,7 +2,7 @@ export interface Tool {
   id: string;
   name: string;
   description: string;
-  category: "Research" | "Agents" | "Video" | "Design" | "Audio" | "Apps & Websites";
+  category: "Text" | "Agents" | "Video" | "Design" | "Audio" | "Apps & Websites";
   url: string;
   pricing: "Free" | "Paid";
   featured: boolean;
