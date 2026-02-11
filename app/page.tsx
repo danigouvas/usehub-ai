@@ -7,12 +7,14 @@ import SearchBar from '../components/SearchBar';
 import CategoryPills from '../components/CategoryPills';
 
 const categories = ["All Tools", "Text", "Agents", "Video", "Design", "Audio", "Apps & Websites"];
+
+// AQUI ESTÁ A CORREÇÃO: Quick Actions com Search Terms específicos
 const quickActions = [
-  { label: "Build a Website", action: () => "Apps & Websites" },
-  { label: "Write Code", action: () => "Apps & Websites" },
-  { label: "Make a Movie", action: () => "Video" },
-  { label: "Create Song", action: () => "Audio" },
-  { label: "Find Info", action: () => "Text" }
+  { label: "Build a Website", category: "Apps & Websites", search: "website" }, // Mostra Lovable, 10web
+  { label: "Write Code", category: "Apps & Websites", search: "code" },       // Mostra Cursor, Copilot
+  { label: "Make a Movie", category: "Video", search: "make video" },         // Mostra Veo, Sora
+  { label: "Create Song", category: "Audio", search: "song" },                // Mostra Suno, Udio
+  { label: "Find Info", category: "Text", search: "search" }                  // Mostra Perplexity
 ];
 
 export default function Home() {
@@ -22,9 +24,10 @@ export default function Home() {
 
   const scrollToRanking = () => document.getElementById('ranking-table')?.scrollIntoView({ behavior: 'smooth' });
 
-  const handleQuickAction = (category: string) => {
-    setSelectedCategory(category);
-    setSearchQuery('');
+  // Ação Rápida Inteligente
+  const handleQuickAction = (action: { category: string, search: string }) => {
+    setSelectedCategory(action.category);
+    setSearchQuery(action.search); 
   };
 
   const filteredTools = useMemo(() => {
@@ -32,7 +35,8 @@ export default function Home() {
       const matchesCategory = selectedCategory === "All Tools" || tool.category === selectedCategory;
       const matchesPrice = priceFilter === "All" || tool.pricing === priceFilter;
       const query = searchQuery.toLowerCase();
-      const matchesSearch = tool.name.toLowerCase().includes(query) ||
+      // Pesquisa expandida
+      const matchesSearch = tool.name.toLowerCase().includes(query) || 
                            tool.keywords.some(k => k.toLowerCase().includes(query)) ||
                            tool.description.toLowerCase().includes(query) ||
                            tool.category.toLowerCase().includes(query);
@@ -54,13 +58,14 @@ export default function Home() {
           <div className="flex items-center gap-2"><Zap className="w-8 h-8 text-indigo-400" /><h1 className="text-2xl font-black uppercase italic tracking-tighter">UseHub.ai</h1></div>
           <button onClick={scrollToRanking} className="bg-slate-900 border border-slate-800 px-4 py-2 rounded-xl text-xs font-bold hover:border-indigo-500 transition-all flex items-center gap-2"><BarChart3 className="w-4 h-4 text-indigo-400" /> VIEW RANKINGS</button>
         </div>
-
+        
         <h2 className="text-8xl font-black mb-12 bg-gradient-to-b from-white to-slate-600 bg-clip-text text-transparent italic leading-[0.9]">THE AI BIBLE 2026</h2>
         <div className="max-w-2xl mx-auto mb-12"><SearchBar value={searchQuery} onChange={setSearchQuery} /></div>
-
+        
+        {/* Quick Actions Corrigidas */}
         <div className="flex flex-wrap justify-center gap-3 mb-16">
           {quickActions.map(action => (
-            <button key={action.label} onClick={() => handleQuickAction(action.action())} className="px-6 py-3 rounded-2xl bg-slate-900/50 border border-slate-800 text-xs font-black uppercase tracking-widest hover:border-indigo-500 transition-all">{action.label}</button>
+            <button key={action.label} onClick={() => handleQuickAction(action)} className="px-6 py-3 rounded-2xl bg-slate-900/50 border border-slate-800 text-xs font-black uppercase tracking-widest hover:border-indigo-500 transition-all">{action.label}</button>
           ))}
         </div>
 
@@ -81,15 +86,15 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">{tools.filter(t => t.featured).map(tool => <ToolCard key={`elite-${tool.id}`} tool={tool} />)}</div>
           </section>
         )}
-
+        
         <div className="flex items-center gap-4 mb-12 opacity-50"><List className="w-6 h-6" /><h3 className="text-xl font-black uppercase tracking-[0.3em]">Global Registry</h3></div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-48">{filteredTools.map(tool => <ToolCard key={tool.id} tool={tool} />)}</div>
 
         <section id="ranking-table" className="mt-40 border-t border-slate-900 pt-32 pb-48">
-          <div className="text-center mb-20"><BarChart3 className="w-16 h-16 text-indigo-500 mx-auto mb-6" /><h2 className="text-6xl font-black italic tracking-tighter mb-4 uppercase">Power Rankings</h2><p className="text-slate-500 font-black uppercase tracking-[0.5em] text-xs italic">Verified by LMARENA</p></div>
+          <div className="text-center mb-20"><BarChart3 className="w-16 h-16 text-indigo-500 mx-auto mb-6" /><h2 className="text-6xl font-black italic tracking-tighter mb-4 uppercase">Power Rankings</h2><p className="text-slate-500 font-black uppercase tracking-[0.5em] text-xs italic">Verified by LMSYS Chatbot Arena</p></div>
           <div className="bg-[#0b1121]/80 border border-slate-800 rounded-[2.5rem] overflow-hidden backdrop-blur-3xl shadow-2xl">
             <table className="w-full text-left">
-              <thead><tr className="bg-slate-900/50 border-b border-slate-800 text-[10px] font-black uppercase tracking-[0.4em] text-slate-500"><th className="px-10 py-10">Category</th><th className="px-10 py-10">🥇 Rank #1</th><th className="px-10 py-10">🥈 Rank #2</th><th className="px-10 py-10">🥉 Rank #3</th></tr></thead>
+              <thead><tr className="bg-slate-900/50 border-b border-slate-800 text-[10px] font-black uppercase tracking-[0.4em] text-slate-500"><th className="px-10 py-10">Category</th><th className="px-10 py-10">🥇 #1 LMSYS</th><th className="px-10 py-10">🥈 #2</th><th className="px-10 py-10">🥉 #3</th></tr></thead>
               <tbody className="divide-y divide-slate-800/50">
                 {rankingData.map(row => (
                   <tr key={row.category} className="hover:bg-indigo-500/5 transition-all"><td className="px-10 py-10 font-black text-indigo-400 text-sm tracking-widest">{row.category}</td>
