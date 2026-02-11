@@ -5,7 +5,7 @@ export interface Tool {
   category: "Text" | "Agents" | "Video" | "Design" | "Audio" | "Apps & Websites";
   url: string;
   pricing: "Free" | "Paid";
-  featured: boolean;
+  featured?: boolean;  // <--- O ? TORNAR ISTO OPCIONAL. FIM DOS ERROS DE BUILD.
   badge?: string;
   color: string;
   keywords: string[];

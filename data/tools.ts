@@ -1,7 +1,7 @@
 import { Tool } from '../types';
 
 export const tools: Tool[] = [
-  // --- TEXT (The Brains) ---
+  // --- TEXT ---
   { id: "gemini-3", name: "Gemini 3 Pro", description: "Best for: Everything. The most capable AI model in the world right now.", category: "Text", url: "https://gemini.google.com", pricing: "Free", featured: true, badge: "🏆 #1 Overall", color: "bg-blue-600", keywords: ["text", "chat", "summarize", "pdf", "analyze", "find info"], score: 4.9 },
   { id: "claude-3-5", name: "Claude 3.5 Sonnet", description: "Best for: Logic. The smartest AI for coding and complex reasoning.", category: "Text", url: "https://claude.ai", pricing: "Paid", featured: true, badge: "🧠 Smartest", color: "bg-orange-600", keywords: ["text", "code", "logic", "reasoning", "write", "find info"], score: 4.9 },
   { id: "chatgpt-5", name: "ChatGPT (GPT-4o)", description: "Best for: Daily Help. The classic assistant that sees, hears, and speaks.", category: "Text", url: "https://chat.openai.com", pricing: "Free", featured: true, badge: "⚡ Fast & Voice", isClassic: true, color: "bg-emerald-600", keywords: ["text", "voice", "chat", "writing", "find info"], score: 4.8 },
@@ -11,7 +11,7 @@ export const tools: Tool[] = [
   { id: "turbo-ai", name: "Turbo Learn", description: "Best for: Students. Generates quizzes from notes.", category: "Text", url: "https://turbolearn.ai", pricing: "Free", featured: false, color: "bg-purple-500", keywords: ["text", "study", "learn", "school"], score: 4.6 },
   { id: "notebooklm", name: "NotebookLM", description: "Best for: Podcasts. Turns PDFs into audio discussions.", category: "Text", url: "https://notebooklm.google", pricing: "Free", featured: false, isClassic: true, color: "bg-green-600", keywords: ["text", "study", "audio", "summarize"], score: 4.7 },
 
-  // --- AGENTS (The Doers) ---
+  // --- AGENTS ---
   { id: "mariner", name: "Project Mariner", description: "Best for: Web Tasks. It surfs the web, books flights, and fills forms.", category: "Agents", url: "https://google.com", pricing: "Paid", featured: true, badge: "🚀 God Mode", color: "bg-indigo-600", keywords: ["agent", "browser", "automate", "book", "web", "hire an agent"], score: 4.9 },
   { id: "claude-code", name: "Claude Code", description: "Best for: Coding. An autonomous agent that lives in your terminal.", category: "Agents", url: "https://anthropic.com", pricing: "Paid", featured: true, badge: "💻 Dev Agent", color: "bg-orange-500", keywords: ["agent", "code", "terminal", "dev", "write code"], score: 4.9 },
   { id: "manus", name: "Manus AI", description: "Best for: Workflows. Executes complex jobs across multiple apps.", category: "Agents", url: "https://manus.ai", pricing: "Paid", featured: false, isTrending: true, color: "bg-slate-900", keywords: ["agent", "workflow", "automate", "work", "hire an agent"], score: 4.8 },
@@ -21,7 +21,7 @@ export const tools: Tool[] = [
   { id: "gumloop", name: "Gumloop", description: "Best for: No-Code. Drag-and-drop AI pipeline builder.", category: "Agents", url: "https://gumloop.com", pricing: "Free", featured: false, color: "bg-pink-500", keywords: ["agent", "flow", "builder", "automate"], score: 4.6 },
   { id: "babyagi", name: "BabyAGI", description: "Best for: Tasks. Autonomous task creation loop.", category: "Agents", url: "https://babyagi.org", pricing: "Free", featured: false, isOpenSource: true, color: "bg-emerald-500", keywords: ["agent", "task", "autonomous"], score: 4.5 },
 
-  // --- VIDEO (Cinema) ---
+  // --- VIDEO ---
   { id: "veo-3", name: "Google Veo 3", description: "Best for: Consistency. #1 on Rankings. Hollywood-grade stability.", category: "Video", url: "https://google.com", pricing: "Paid", featured: true, badge: "🎥 Pro Choice", color: "bg-red-600", keywords: ["video", "film", "google", "movie", "make video", "make a movie"], score: 4.9 },
   { id: "sora-2", name: "Sora 2", description: "Best for: Photorealism. Generates 4K video indistinguishable from reality.", category: "Video", url: "https://openai.com", pricing: "Paid", featured: true, badge: "🎬 Cinema King", color: "bg-pink-600", keywords: ["video", "movie", "create", "film", "make video", "make a movie"], score: 4.9 },
   { id: "kling-2", name: "Kling 2.6", description: "Best for: Physics. Handles complex movement and action perfectly.", category: "Video", url: "https://klingai.com", pricing: "Free", featured: false, isTrending: true, color: "bg-indigo-900", keywords: ["video", "physics", "action", "move", "make video", "make a movie"], score: 4.8 },
@@ -31,7 +31,7 @@ export const tools: Tool[] = [
   { id: "runway-3", name: "Runway Gen-3", description: "Best for: Control. Precise camera tools and motion brush.", category: "Video", url: "https://runwayml.com", pricing: "Paid", featured: false, isClassic: true, color: "bg-yellow-400", keywords: ["video", "edit", "control", "cinema"], score: 4.7 },
   { id: "luma", name: "Luma Dream Machine", description: "Best for: Speed. Fast generation of high-quality clips.", category: "Video", url: "https://lumalabs.ai", pricing: "Free", featured: false, color: "bg-black", keywords: ["video", "fast", "clip", "3d"], score: 4.6 },
 
-  // --- DESIGN (Images) ---
+  // --- DESIGN ---
   { id: "midjourney-7", name: "Midjourney v7", description: "Best for: Aesthetics. The gold standard for artistic images.", category: "Design", url: "https://midjourney.com", pricing: "Paid", featured: true, badge: "🖌️ #1 Art", color: "bg-white", keywords: ["image", "art", "drawing", "paint", "design logo", "make image"], score: 4.9 },
   { id: "nano-banana", name: "Nano Banana", description: "Best for: Accuracy. Google's engine draws exactly what you ask.", category: "Design", url: "https://google.com", pricing: "Free", featured: true, badge: "🎯 Precise", color: "bg-yellow-500", keywords: ["image", "draw", "precise", "logo", "design logo", "make image"], score: 4.9 },
   { id: "flux-pro", name: "Flux.1 Pro", description: "Best for: Typography. Handles text inside images perfectly.", category: "Design", url: "https://blackforestlabs.ai", pricing: "Free", featured: false, isOpenSource: true, color: "bg-blue-400", keywords: ["image", "text", "logo", "font", "design logo", "make image"], score: 4.8 },
@@ -68,7 +68,7 @@ export const tools: Tool[] = [
   category: ["Text", "Agents", "Video", "Design", "Audio", "Apps & Websites"][i % 6] as any,
   url: "https://usehub.ai",
   pricing: "Free",
-  featured: false,
+  featured: false,  // <--- AGORA ESTÁ AQUI EXPLÍCITO NO LOOP DE EXTRAS TAMBÉM
   color: "bg-slate-800",
   keywords: ["ai", "tool"],
   score: 4.0
