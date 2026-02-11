@@ -2,17 +2,18 @@ export interface Tool {
   id: string;
   name: string;
   description: string;
-  category: "Image" | "Video" | "Code" | "Writing" | "Audio" | "Productivity" | "Chat" | "3D";
+  category: "Agents" | "Creation" | "Build" | "Intelligence" | "Assistants";
   url: string;
   pricing: "Free" | "Paid" | "Freemium";
   featured: boolean;
-  badge?: string;       // A tag amarela (ex: #1 Overall)
-  subBadge?: string;    // A tag cinza (ex: Classic)
+  badge?: string;       // Ranking LMARENA (ex: #1 LMARENA)
+  subBadge?: string;    // Especialidade (ex: Auto-Browser)
   color: string;
   keywords: string[];
   isTrending?: boolean;
   isOpenSource?: boolean;
   isClassic?: boolean;
+  rating: number;       // Score LMARENA/PH
 }
 
 export interface QuickAction {
